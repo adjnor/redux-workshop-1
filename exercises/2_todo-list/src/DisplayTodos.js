@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
-import './App.css';
+import { connect } from 'react-redux';
 
 // This component doesn't use any data in the store! Fix this.
 class DisplayTodos extends Component {
   render = () => {
-    return (<div> I need to get implemented </div>)
-  }
+    return (
+      <ul>
+        {this.props.todos.map(todo => (
+          <li>{todo}</li>
+        ))}
+      </ul>
+    );
+  };
 }
 
-export default DisplayTodos;
+const mapStateToProps = state => {
+  return { todos: state.todos };
+};
+
+export default connect(mapStateToProps)(DisplayTodos);
